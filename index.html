@@ -9,12 +9,17 @@
 </style>
 </head>
 <body>
-  <button id="copy" data-clipboard-text="you should be more careful with your clipboard">Copy Something!</button>
+  <button id="copy">Copy Something!</button>
 </body>
   <script type="text/javascript" src="ZeroClipboard.min.js"></script>
   <script type="text/javascript">
     window.onload = function() {
-      new ZeroClipboard(document.getElementById("copy"));
+      var zclip = new ZeroClipboard(document.getElementById("copy"));
+      zclip.on('ready', function(event) {
+        zclip.on('copy', function(event) {
+          zclip.setText(new Date().getSeconds() + "");
+        });
+      });
     };
   </script>
 </html>
